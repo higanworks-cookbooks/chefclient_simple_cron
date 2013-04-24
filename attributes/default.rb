@@ -3,14 +3,13 @@ default['chef_client_cron']['base_minute'] = node['ipaddress'].split('.')[3].to_
 
 # create basetime and interval
 cron_str = base_time.to_s
-default['chef_client_cron']['cron_minute'] do {
-  (60 / node['chef_client_cron']['base_minute']).times do |x|
-    unless x == 0
-      cron_str = cron_str + "," + (base_time + node['chef_client_cron']['interval'].to_i * x).to_s
-    end
+(60 / node['chef_client_cron']['base_minute']).times do |x|
+  unless x == 0
+    cron_str = cron_str + "," + (base_time + node['chef_client_cron']['interval'].to_i * x).to_s
   end
-  cron_str
-}
+end
+
+default['chef_client_cron']['cron_minute'] = cron_str
 
 ## chef-client configuration
 default['chef_client_cron']['bin'] = '/opt/local/bin/chef-client'
