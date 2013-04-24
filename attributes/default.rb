@@ -1,5 +1,5 @@
 default['chef_client_cron']['interval'] = 30
-default['chef_client_cron']['base_minute'] = node['ipaddress'].split('.')[3].to_i % node['chef_client_cron']['interval']
+default['chef_client_cron']['base_minute'] = node['ipaddress'].split('.')[3].to_i % node['chef_client_cron']['interval'] % node['chef_client_cron']['interval']
 
 # create basetime and interval
 cron_str = node['chef_client_cron']['base_minute'].to_s
