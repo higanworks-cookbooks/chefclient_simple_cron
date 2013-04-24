@@ -2,7 +2,7 @@ default['chef_client_cron']['interval'] = 30
 default['chef_client_cron']['base_minute'] = node['ipaddress'].split('.')[3].to_i % node['chef_client_cron']['interval']
 
 # create basetime and interval
-cron_str = base_time.to_s
+cron_str = node['chef_client_cron']['base_minute'].to_s
 (60 / node['chef_client_cron']['base_minute']).times do |x|
   unless x == 0
     cron_str = cron_str + "," + (base_time + node['chef_client_cron']['interval'].to_i * x).to_s
