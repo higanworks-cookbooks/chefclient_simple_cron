@@ -8,3 +8,8 @@
 cron "chefclient_simple_cron" do
   action :delete
 end
+
+logadm "chef-client" do
+  action :delete
+end
+
