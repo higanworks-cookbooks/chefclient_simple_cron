@@ -33,4 +33,5 @@ e.g.
 
 License and Authors
 -------------------
+License: under apache2  
 Authors: sawanoboryu[at]higanworks.com (HiganWorks LLC)
