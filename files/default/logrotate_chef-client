@@ -1,0 +1,9 @@
+/var/log/chef/client.log {
+       daily
+       rotate 14
+       delaycompress
+       compress
+       notifempty
+       missingok
+}
+

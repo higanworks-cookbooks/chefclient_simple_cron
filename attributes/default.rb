@@ -12,6 +12,12 @@ end
 default['chef_client_cron']['cron_minute'] = cron_str
 
 ## chef-client configuration
-default['chef_client_cron']['bin'] = '/opt/local/bin/chef-client'
+case node[:platform]
+when 'smartos'
+  default['chef_client_cron']['bin'] = '/opt/local/bin/chef-client'
+else
+  default['chef_client_cron']['bin'] = '/usr/bin/chef-client'
+end
+
 default['chef_client_cron']['run_opton'] = '-s 60 -l warn -L /var/log/chef/client.log'
 

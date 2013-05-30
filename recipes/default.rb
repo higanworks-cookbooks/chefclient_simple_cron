@@ -5,6 +5,10 @@
 # Copyright 2013, HiganWorks LLC.
 #
 
+directory '/var/log/chef' do
+  action :create
+end
+
 cron "chefclient_simple_cron" do
   action :create
   weekday '*'
@@ -15,10 +19,20 @@ cron "chefclient_simple_cron" do
   command [node['chef_client_cron']['bin'],node['chef_client_cron']['run_opton']].join(' ')
 end
 
-logadm "chef-client" do
-  path "/var/log/chef/client.log"
-  copy true
-  size "1b"
-  period "7d"
-  action :create
+case node[:platform]
+when 'smartos'
+  logadm "chef-client" do
+    path "/var/log/chef/client.log"
+    copy true
+    size "1b"
+    period "7d"
+    action :create
+  end
+
+else
+  cookbook_file '/etc/logrotate.d/chef-client' do
+    source 'logrotate_chef-client'
+    action :create
+  end
+
 end
