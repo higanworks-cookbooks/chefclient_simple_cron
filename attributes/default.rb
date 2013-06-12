@@ -19,5 +19,5 @@ else
   default['chef_client_cron']['bin'] = '/usr/bin/chef-client'
 end
 
-default['chef_client_cron']['run_opton'] = '-s 60 -l warn -L /var/log/chef/client.log'
+default['chef_client_cron']['run_opton'] = '-s 60 -l warn -L /var/log/chef/client.log  >/dev/null 2>&1'
 

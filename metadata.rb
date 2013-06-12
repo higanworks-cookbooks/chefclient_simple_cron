@@ -4,7 +4,7 @@ maintainer_email 'sawanoboriyu@higanworks.com'
 license          'apache2'
 description      'just add chef-client to crontab, for smartos'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.3.0'
+version          '0.3.1'
 supports         'smartos'
 supports         'ubuntu'
 recommends       'logadm'
